@@ -1,5 +1,6 @@
 # OPEN STREET WRAPPER.
-Uses open street map API to fetch features of Bounding box formatted coordinates.
+
+Uses open street map API to fetch features of [Bounding Box](https://wiki.openstreetmap.org/wiki/Bounding_Box) formatted coordinates.
 
 ## Technologies used
 - `Docker`
@@ -21,7 +22,7 @@ Since this is a dockerized app, you don't need to install any dependencies, you 
 
 ## Tests and linting
 To run the tests and the linter, run the following commands
-- `docker run --rm -it -v "$(pwd)":/app -w /app node:19-alpine3.18 npm install`
+- `docker run --rm -it -v "$(pwd)":/app -w /app node:19-alpine3.18 npm install` to install node dependencies
 - `docker run --rm -it -v "$(pwd)":/app -w /app node:19-alpine3.18 npm run test` to run the tests.
 - `docker run --rm -it -v "$(pwd)":/app -w /app node:19-alpine3.18 npm run lint` to lint the code.
 
