@@ -16,15 +16,16 @@ Since this is a dockerized app, you don't need to install any dependencies, you 
 - Clone the project.
 - `cd` into the project directory.
 - `docker build -t open-street-wrapper .` to build the image
-- `docker run -it -v "$(pwd)":/app -w /app node:14-alpine npm run test` to run the tests.
-- `docker run -it -v "$(pwd)":/app -w /app node:14-alpine npm run lint` to lint the code.
-- `docker run --name open-street-wrapper -it --rm -p 3000:3000 open-st
-  reet-wrapper` to run the container.
+- `docker run --name open-street-wrapper -it --rm -p 3000:3000 open-street-wrapper` to run the container.
 - `docker stop open-street-wrapper` to stop the app once done.
+
+## Tests and linting
+- `docker run --rm -it -v "$(pwd)":/app -w /app node:19-alpine3.18 npm run test` to run the tests.
+- `docker run --rm -it -v "$(pwd)":/app -w /app node:19-alpine3.18 npm run lint` to lint the code.
 
 
 ## API
-The app exposes one single endpoint `/api/v1/features` which accepts query parameters:
+The app exposes a single endpoint `/api/v1/features` which accepts the following query parameters:
 - minLon
 - minLat
 - maxLon
@@ -34,4 +35,4 @@ The app exposes one single endpoint `/api/v1/features` which accepts query param
 There are validators set in place to ensure only valid values are sent to the `osm API`
 
 ### Valid request example:
-`localhost:3000/api/v1/features?minLon=2.2945&minLat=48.8584&maxLon=2.2968&maxLat=48.8600`
+`curl "localhost:3000/api/v1/features?minLon=2.2945&minLat=48.8584&maxLon=2.2968&maxLat=48.8600"`
