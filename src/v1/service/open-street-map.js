@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 /**
- * Fetches data from an endpoint
+ * @description Fetches data from an endpoint
  *
  * @param url
  * @param params
@@ -10,10 +10,10 @@ import axios from 'axios';
 const fetchData = async (url, params) => axios.get(url, { params, validateStatus: () => true });
 
 /**
- * Fetches open street map data
+ * @description Fetches open street map data
  *
- * @returns {Promise<axios.AxiosResponse<*>>}
  * @param params
+ * @returns {Promise<axios.AxiosResponse<*>>}
  */
 const getMapData = async (
   {

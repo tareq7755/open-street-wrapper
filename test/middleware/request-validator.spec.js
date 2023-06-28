@@ -1,6 +1,6 @@
 import getFeaturesRequestValidator from "../../src/middleware/request-validator.js";
 import {
-  HTTP_BAD_REQUEST,
+  HTTP_BAD_REQUEST, VALIDATION_INVALID_BOX_RANGE_MESSAGE,
   VALIDATION_INVALID_BOX_VALUES_MESSAGE,
   VALIDATION_INVALID_PARAMS_MESSAGE,
   VALIDATION_MAXIMUM_BOX_SIZE_EXCEEDED_MESSAGE
@@ -20,10 +20,12 @@ describe('getMapDataRequestValidator', () => {
         maxLat: '2.001',
       },
     };
+
     res = {
       status: jest.fn().mockReturnThis(),
       send: jest.fn(),
     };
+    
     next = jest.fn();
   });
 
@@ -32,6 +34,7 @@ describe('getMapDataRequestValidator', () => {
     const statusSpy = jest.spyOn(res, "status");
 
     req.query = {};
+
     getFeaturesRequestValidator(req, res, next);
 
     expect(statusSpy).toHaveBeenCalledWith(HTTP_BAD_REQUEST);
@@ -42,7 +45,7 @@ describe('getMapDataRequestValidator', () => {
     expect(next).not.toHaveBeenCalled();
   });
 
-  it('should return bad request response with correct message if the bounding box size is invalid', () => {
+  it('should return bad request response with correct message if the bounding box values are out of range', () => {
     const sendSpy = jest.spyOn(res, "send");
     const statusSpy = jest.spyOn(res, "status");
 
@@ -51,6 +54,24 @@ describe('getMapDataRequestValidator', () => {
       minLat: '2000111.000',
       maxLon: '1000111.001',
       maxLat: '200011.001',
+    }
+
+    getFeaturesRequestValidator(req, res, next);
+
+    expect(statusSpy).toHaveBeenCalledWith(400);
+    expect(sendSpy).toHaveBeenCalledWith({ error: VALIDATION_INVALID_BOX_RANGE_MESSAGE });
+    expect(next).not.toHaveBeenCalled();
+  });
+
+  it('should return bad request response with correct message if the bounding box size exceeds limit', () => {
+    const sendSpy = jest.spyOn(res, "send");
+    const statusSpy = jest.spyOn(res, "status");
+
+    req.query = {
+      minLon: '-180',
+      minLat: '-90',
+      maxLon: '180',
+      maxLat: '90',
     }
 
     getFeaturesRequestValidator(req, res, next);

@@ -1,5 +1,9 @@
-import { validBoundingBoxSize, validBoundingBoxValues } from "../../src/validator/bounding-box.js";
-import { MAXIMUM_BOX_SIZE } from "../../src/constant/constants.js";
+import {
+  validBoundingBoxRange,
+  validBoundingBoxSize,
+  validBoundingBoxValues
+} from "../../src/validator/bounding-box.js";
+import { MAX_BOX_SIZE } from "../../src/constant/constants.js";
 
 
 describe('Bounding Box Validator', () => {
@@ -23,11 +27,26 @@ describe('Bounding Box Validator', () => {
     });
 
     it('should return false if the box size exceeds the maximum box size limit', () => {
-      const maxLon = parseFloat(MAXIMUM_BOX_SIZE) + 1;
+      const maxLon = parseFloat(MAX_BOX_SIZE) + 1;
       const minLon = maxLon - 1;
-      const maxLat = parseFloat(MAXIMUM_BOX_SIZE) + 1;
+      const maxLat = parseFloat(MAX_BOX_SIZE) + 1;
       const minLat = maxLat - 1;
+
       expect(validBoundingBoxSize(minLon.toString(), minLat.toString(), maxLon.toString(), maxLat.toString())).toBe(false);
+    });
+  });
+
+  describe('validBoundingBoxRange', () => {
+    it('should return true if minLat, maxLat, minLon, maxLon are in range [-90, 90], [-180, 180] respectively', () => {
+      expect(validBoundingBoxRange('-180', '-90', '180', '90')).toBe(true);
+      expect(validBoundingBoxRange('-20', '10', '170', '50')).toBe(true);
+    });
+
+    it('should return false if any of the 4 (minLat, maxLat, minLon, maxLon) values are out of range', () => {
+      expect(validBoundingBoxRange('-190', '0', '1', '1')).toBe(false);
+      expect(validBoundingBoxRange('0', '-91', '1', '1')).toBe(false);
+      expect(validBoundingBoxRange('0', '0', '190', '1')).toBe(false);
+      expect(validBoundingBoxRange('0', '0', '1', '200')).toBe(false);
     });
   });
 });

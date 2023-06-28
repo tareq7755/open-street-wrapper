@@ -3,7 +3,7 @@ import transform from '../transformer/osm-geojson-transformer.js';
 import { ERROR_TOO_MANY_NODES, HTTP_BAD_REQUEST } from "../../constant/constants.js";
 
 /**
- * Handle API calls to /maps
+ * @description Handle API calls to /maps
  *
  * @param req
  * @param res

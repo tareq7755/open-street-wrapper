@@ -1,6 +1,11 @@
 export const VALIDATION_MAXIMUM_BOX_SIZE_EXCEEDED_MESSAGE = 'maximum bbox size exceeded';
 export const VALIDATION_INVALID_BOX_VALUES_MESSAGE = 'minLon must be <= maxLon and minLat must be <= maxLat';
 export const VALIDATION_INVALID_PARAMS_MESSAGE = 'invalid or missing parameters';
+export const VALIDATION_INVALID_BOX_RANGE_MESSAGE = 'the latitudes must be between -90 and 90, longitudes between -180 and 180';
 export const ERROR_TOO_MANY_NODES = 'you requested too many nodes, please request a smaller area';
 export const HTTP_BAD_REQUEST = 400;
-export const MAXIMUM_BOX_SIZE = '0.250000';
+export const MAX_BOX_SIZE = '0.250000';
+export const LAT_LOWER_END = -90;
+export const LAT_UPPER_END = 90;
+export const LON_LOWER_END = -180;
+export const LON_UPPER_END = 180;
