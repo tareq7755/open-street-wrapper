@@ -1,0 +1,27 @@
+{
+  "name": "open-street-wrapper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint --fix src/**/*.js"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "osmtogeojson": "^2.2.12"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "wrapper for osm",
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.17.9",
+    "eslint": "^8.43.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "jest": "^29.5.0"
+  }
+}
