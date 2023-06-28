@@ -20,6 +20,8 @@ Since this is a dockerized app, you don't need to install any dependencies, you 
 - `docker stop open-street-wrapper` to stop the app once done.
 
 ## Tests and linting
+To run the tests and the linter, run the following commands
+- `docker run --rm -it -v "$(pwd)":/app -w /app node:19-alpine3.18 npm install`
 - `docker run --rm -it -v "$(pwd)":/app -w /app node:19-alpine3.18 npm run test` to run the tests.
 - `docker run --rm -it -v "$(pwd)":/app -w /app node:19-alpine3.18 npm run lint` to lint the code.
 
